@@ -4,11 +4,17 @@ const Product = mongoose.model('Product');
 
 module.exports = {
     async index(req, res) {
+
+        const { page = 1 } = req.query;
+        
         /**
          * O await serve para garantir que a próxima linha só execute após 
          * conseguir buscar os produtos dentro do banco de dados
          */
-        const products = await Product.find();
+        const products = await Product.paginate({}, {
+            page, 
+            limit: 10
+        });
         console.log(`[${new Date().toLocaleString()}] Listagem de Produtos: GET /api/products\n`);
         return res.json(products);
     },
