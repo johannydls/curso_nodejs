@@ -9,6 +9,13 @@ module.exports = {
          * conseguir buscar os produtos dentro do banco de dados
          */
         const products = await Product.find();
+        console.log(`[${new Date().toLocaleDateString()}] Listando produtos`);
         return res.json(products);
     },
+
+    async store(req, res) {
+        const product = await Product.create(req.body);
+        console.log(`[${new Date().toLocaleDateString()}] Novo produto adicionado\n ${req.body}`);
+        return res.json(product);
+    }
 }
