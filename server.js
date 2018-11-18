@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/nodeapi', { useNewUrlParser: true })
 
 requireDir('./src/models');
 
-//Rotas
+//Rotas com prefixo /api/
 app.use('/api', require('./src/routes'));
 
 app.listen(3001);
